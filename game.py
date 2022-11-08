@@ -1,12 +1,12 @@
 """A number-guessing game."""
 import random
 # Put your code here
-name = input("Howdy, what's your name? ")
+""" name = input("Howdy, what's your name? ")
 print(f"{name}, I'm thinking of a number between 1 and 100.")
 print("Try to guess my number.")
 moreRounds = "y"
 scores = []
-maxCount = 5
+maxCount = 10
 def guessing():
     low = int(input("Choose your start number: "))
     high = int(input("Choose your end number: "))
@@ -44,4 +44,36 @@ while moreRounds.lower() == "y":
     moreRounds = guessing()
 if moreRounds.lower() == "n":
     bestScore = min(scores)
-    print(f"Congrats! Your best score is {bestScore} tries!")
+    print(f"Congrats! Your best score is {bestScore} tries!") """
+
+def computerGuess():
+    start = random.randint(1, 100)
+    end = random.randint(1, 100)
+    if start < end:
+        print(start)
+        print(end)
+        myNumber = random.randint(start, end)
+        print("MY number is ", myNumber)
+        comGuess = random.randint(start, end)
+        print(comGuess)
+    while start < end and myNumber != comGuess:
+        response = int(input(f"{comGuess} is 1-too high or 2-too low: "))
+        mid = (start + end) // 2
+        if response == 2:
+            start = mid
+            if start > myNumber:
+                start = myNumber
+            comGuess = random.randint(start, end)
+            print("COMGUESS is ", comGuess)
+        elif response == 1:
+            end = mid
+            if end < myNumber:
+                end = myNumber
+            comGuess = random.randint(start, end)
+            print("COMGUESS is ", comGuess)
+        #print(start, end)
+        #print("MY number is ", myNumber)
+    print("You Win")
+
+computerGuess()
+          
